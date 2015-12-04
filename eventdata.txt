@@ -1,3 +1,6 @@
-Event: Technical Talk on Concept by Person
-Venue: Auditorium, CVR College of Engineering
-Date: 15-12-2015
+Title
+Description of the event
+;jkjk
+15-08-1997
+
+local

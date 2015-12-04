@@ -31,7 +31,7 @@
   <meta name="theme-color" content="#ffffff">
 <title>Online Registration</title>
 <style>
-p, h1 {
+p, h1, h3 {
   text-align: center;
 }
 </style>
@@ -41,19 +41,33 @@ p, h1 {
 <h1>Online Registration</h1>
 <?php
     $fp = fopen("eventdata.txt", "r");
+    echo '<h3><span class="label label-default">Event Title</span></h3>';
     $string = fgets($fp);
     echo "<p>".$string."</p>";
     $string = fgets($fp);
+    if($string != NULL && $string != "") {
+    echo '<h3><span class="label label-default">Event Description</span></h3>';
+    echo "<p>".$string."</p>";
+    }
+    $string = fgets($fp);
+    if($string != NULL && $string != "") {
+    echo '<h3><span class="label label-default">Venue</span></h3>';
+    echo "<p>".$string."</p>";
+    }
+    $string = fgets($fp);
+    echo '<h3><span class="label label-default">Date</span></h3>';
     echo "<p>".$string."</p>";
     $string = fgets($fp);
+    if($string != NULL && $string != "") {
+    echo '<h3><span class="label label-default">Time</span></h3>';
     echo "<p>".$string."</p>";
-    fclose($fp);
+  }
+  $eventtype = fgets($fp);
+  fclose($fp);
 ?>
+<br>
 <form class="form-horizontal" name = "register" action = "submit.php" method = "post" onsubmit = "return validateForm()">
     <fieldset>
-
-    <!-- Form Name -->
-    <legend>Registration Form</legend>
 
     <!-- Text input-->
     <div class="form-group">
@@ -84,19 +98,19 @@ p, h1 {
 
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="roll">Roll Number / Faculty ID</label>
+      <label class="col-md-4 control-label" for="contact">Institution</label>
       <div class="col-md-4">
-      <input id="roll" name="roll" type="text" placeholder="13B81A0501" class="form-control input-md" required="">
-      <span class="help-block">Enter NA if not applicable</span>
+      <input id="institution" name="institution" type="text" placeholder="CVR College of Engineering" value = "<?php if($eventtype == "public") echo "CVR College of Engineering"; else echo "";?>" class="form-control input-md" required="">
+
       </div>
     </div>
 
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="dept-other">if Other, please specify department</label>
+      <label class="col-md-4 control-label" for="roll">Roll Number / Faculty ID</label>
       <div class="col-md-4">
-      <input id="dept-other" name="dept-other" type="text" placeholder="ECE, EIE, etc" class="form-control input-md">
-
+      <input id="roll" name="roll" type="text" placeholder="13B81A0501" class="form-control input-md" required="">
+      <span class="help-block">Enter NA if not applicable</span>
       </div>
     </div>
 
@@ -112,6 +126,15 @@ p, h1 {
       </div>
     </div>
 
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="dept-other">if Other, please specify department</label>
+      <div class="col-md-4">
+      <input id="dept-other" name="dept-other" type="text" placeholder="ECE, EIE, etc" class="form-control input-md">
+
+      </div>
+    </div>
+
     <!-- Button -->
     <div class="form-group">
       <label class="col-md-4 control-label" for="submit"></label>
@@ -123,42 +146,5 @@ p, h1 {
     </fieldset>
   </form>
 </div>
-<script>
-function validateEmail(email) {
-    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-    return re.test(email);
-}
-function validateForm() {
-    var name = document.forms["register"]["name"].value;
-    if (name == null || name == "") {
-        alert("Name must be filled out");
-        return false;
-    }
-    var email = document.forms["register"]["email"].value;
-    if (email == null || email == "") {
-        alert("Email must be filled out");
-        return false;
-    }
-    if (!validateEmail) {
-        alert("Enter valid email address");
-        return false;
-    }
-    var contact = document.forms["register"]["contact"].value;
-    if (contact == null || contact == "") {
-        alert("Contact number must be filled out");
-        return false;
-    }
-    var roll = document.forms["register"]["roll"].value;
-    if (roll == null || roll == "") {
-        alert("Roll Number is mandatory, Enter NA if not applicable");
-        return false;
-    }
-    var dept = document.forms["register"]["dept"].value;
-    if (dept == null || dept == "") {
-        alert("Please mention your branch");
-        return false;
-    }
-}
-</script>
 </body>
 </html>

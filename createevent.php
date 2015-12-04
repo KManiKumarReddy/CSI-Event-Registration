@@ -39,30 +39,20 @@ p, h1 {
 <div class = "container">
 <body>
 <?php
-    $name = $_POST["name"];
-    $email =  $_POST["email"];
-    $contact =  $_POST["contact"];
-    $roll = $_POST["roll"];
-    $dept = $_POST["dept"];
-    if($dept == "Other")
-      $dept = $_POST["dept-other"];
-    $fp = fopen("eventdata.txt", "r");
-    $filename = fgets($fp);
+    $title = $_POST["title"];
+    $description =  $_POST["description"];
+    $date =  $_POST["date"];
+    $time = $_POST["time"];
+    $venue = $_POST["venue"];
+    $type = $_POST["type"];
+    $fp = fopen("eventdata.txt", "w");
+    fwrite($fp, $title . "\n" . $description . "\n" . $venue . "\n" . $date . "\n" . $time . "\n" . $type . "\n");
     fclose($fp);
-    substr($filename, 0, -2);
-    $fcount = fopen("regcount.txt", "r");
-    fscanf($fcount, "%d", $count);
-    fclose($fcount);
-    $count = $count + 1;
-    $fcount = fopen("regcount.txt", "w");
-    fwrite($fcount, $count);
-    fclose($fcount);
-    $fp = fopen($filename."details.csv", "a");
-    fwrite($fp, $count . "," . $name . "," . $email . "," . $roll . "," . $contact . "," . $dept . "\n");
+    $fp = fopen("regcount.txt", "w");
+    fwrite($fp, 0);
     fclose($fp);
 ?>
-<p>You are successfully registered as</p>
-<h1><?php echo $count ?></h1>
+<p>Event created successfully</p>
 </div>
 </body>
 </html>

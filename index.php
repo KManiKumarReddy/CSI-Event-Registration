@@ -31,7 +31,7 @@
   <meta name="theme-color" content="#ffffff">
 <title>Online Registration</title>
 <style>
-p, h1, h3 {
+p, h1, h3, h5 {
   text-align: center;
 }
 </style>
@@ -39,30 +39,36 @@ p, h1, h3 {
 <body>
 <div class = "container">
 <h1>Online Registration</h1>
+<br><br>
 <?php
     $fp = fopen("eventdata.txt", "r");
-    echo '<h3><span class="label label-default">Event Title</span></h3>';
+    echo '<h5><span class="label label-default">Event Title</span></h5>';
     $string = fgets($fp);
-    echo "<p>".$string."</p>";
+    echo "<h3>".$string."</h3><br>";
     $string = fgets($fp);
-    if($string != NULL && $string != "") {
-    echo '<h3><span class="label label-default">Event Description</span></h3>';
-    echo "<p>".$string."</p>";
+    if($string != NULL && $string != "" && $string != "\n") {
+        echo '<h5><span class="label label-default">Event Description</span></h5>';
+        echo "<h3>".$string."</h3><br>";
     }
     $string = fgets($fp);
-    if($string != NULL && $string != "") {
-    echo '<h3><span class="label label-default">Venue</span></h3>';
-    echo "<p>".$string."</p>";
+    if($string != NULL && $string != "" && $string != "\n") {
+        echo '<h5><span class="label label-default">Speaker</span></h5>';
+        echo "<h3>".$string."</h3><br>";
     }
     $string = fgets($fp);
-    echo '<h3><span class="label label-default">Date</span></h3>';
-    echo "<p>".$string."</p>";
+    if($string != NULL && $string != "" && $string != "\n") {
+        echo '<h5><span class="label label-default">Speaker Profile</span></h5>';
+        echo "<h3><a href='".$string."'>".$string."</a></h3><br>";
+    }
     $string = fgets($fp);
-    if($string != NULL && $string != "") {
-    echo '<h3><span class="label label-default">Time</span></h3>';
-    echo "<p>".$string."</p>";
-  }
-  $eventtype = fgets($fp);
+    if($string != NULL && $string != "" && $string != "\n") {
+    echo '<h5><span class="label label-default">Venue</span></h5>';
+    echo "<h3>".$string."</h3><br>";
+    }
+    $string = fgets($fp);
+    echo '<h5><span class="label label-default">Date & Time</span></h5>';
+    echo "<h3>".$string."</h3><br>";
+    $string = fgets($fp);
   fclose($fp);
 ?>
 <br>
@@ -73,7 +79,7 @@ p, h1, h3 {
     <div class="form-group">
       <label class="col-md-4 control-label" for="name">Name</label>
       <div class="col-md-4">
-      <input id="name" name="name" type="text" placeholder="John Doe" class="form-control input-md" required="">
+      <input id="name" name="name" type="text" placeholder="Abdul Kalam" class="form-control input-md" required="">
 
       </div>
     </div>
@@ -82,7 +88,7 @@ p, h1, h3 {
     <div class="form-group">
       <label class="col-md-4 control-label" for="email">Email address</label>
       <div class="col-md-4">
-      <input id="email" name="email" type="email" placeholder="johndoe@example.com" class="form-control input-md" required="">
+      <input id="email" name="email" type="email" placeholder="abdulkalam@example.com" class="form-control input-md" required="">
 
       </div>
     </div>
@@ -97,10 +103,10 @@ p, h1, h3 {
     </div>
 
     <!-- Text input-->
-    <div class="form-group">
+    <div class="form-group" <?php if($string == "local\n") echo "hidden";?>>
       <label class="col-md-4 control-label" for="contact">Institution</label>
       <div class="col-md-4">
-      <input id="institution" name="institution" type="text" placeholder="CVR College of Engineering" value = "<?php if($eventtype == "public") echo "CVR College of Engineering"; else echo "";?>" class="form-control input-md" required="">
+      <input id="institution" name="institution" type="text" placeholder="CVR College of Engineering" value = "CVR College of Engineering" class="form-control input-md" required="">
 
       </div>
     </div>
@@ -145,6 +151,50 @@ p, h1, h3 {
 
     </fieldset>
   </form>
+<script>
+function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
+}
+function validateForm() {
+    var name = document.forms["register"]["name"].value;
+    if (name == null || name == "") {
+        alert("Name must be filled out");
+        return false;
+    }
+    var email = document.forms["register"]["email"].value;
+    if (email == null || email == "") {
+        alert("Email must be filled out");
+        return false;
+    }
+    if(!validateEmail(email)) {
+        alert("Enter a valid email");
+        return false;
+    }
+    var roll = document.forms["register"]["roll"].value;
+    if (roll == null || roll == "") {
+        alert("Roll Number is mandatory, Enter NA if not applicable");
+        return false;
+    }
+    var contact = document.forms["register"]["contact"].value;
+    contact = contact.replace(/[^\d]/g, '');
+    if (contact.length < 8 || contact.length > 10) {
+        alert("Contact number must be valid");
+        return false;
+    }
+    var college = document.forms["register"]["institution"].value;
+    if (college == null || college == "") {
+        alert("Contact number must be filled out");
+        return false;
+    }
+    var dept = document.forms["register"]["dept"].value;
+    var deptOther = document.forms["register"]["dept-other"].value;
+    if (dept == "Other" && (deptOther == "" || deptOther == NULL)) {
+        alert("Please mention your branch");
+        return false;
+    }
+}
+</script>
 </div>
 </body>
 </html>

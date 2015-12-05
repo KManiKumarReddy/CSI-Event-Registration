@@ -1,6 +1,7 @@
-Title
-Description of the event
-;jkjk
-15-08-1997
-
+Mobile is eating the World
+A technical tak on growth of Mobile Technologies
+Siri. Pranil Kanderi
+https://www.linkedin.com/in/pranilkanderi
+CSE Seminal Hall, CVR College of Engineering, Ibrahimpatnam
+15/12/2015 2:15PM
 local

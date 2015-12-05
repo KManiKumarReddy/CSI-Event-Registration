@@ -44,20 +44,38 @@ p, h1, h3 {
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="title">Event Title</label>
-  <div class="col-md-4">
-  <input id="title" name="title" type="text" placeholder="Technical Talk" class="form-control input-md" required="">
+<label class="col-md-4 control-label" for="title">Event Title</label>
+<div class="col-md-4">
+<input id="title" name="title" type="text" placeholder="Technical Talk" class="form-control input-md" required="">
 
-  </div>
+</div>
 </div>
 
 <!-- Textarea -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="decription">Description</label>
-  <div class="col-md-4">
-    <textarea class="form-control" id="description" name="description">Description of the event</textarea>
-    <span class="help-block">Single line description only. Multiple lines not allowed.</span>
-  </div>
+<label class="col-md-4 control-label" for="decription">Description</label>
+<div class="col-md-4">
+<textarea class="form-control" id="description" name="description">Description of the event</textarea>
+<span class="help-block">Single line description only. Multiple lines not allowed.</span>
+</div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+<label class="col-md-4 control-label" for="title">Speaker</label>
+<div class="col-md-4">
+<input id="speaker" name="speaker" type="text" placeholder="Mr. Badri Narayana" class="form-control input-md" required="">
+
+</div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+<label class="col-md-4 control-label" for="title">Speaker Profile(URL)</label>
+<div class="col-md-4">
+<input id="speaker-profile" name="speaker-profile" type="text" placeholder="Speaker Profile" class="form-control input-md" required="">
+
+</div>
 </div>
 
 <!-- Multiple Radios (inline) -->
@@ -86,18 +104,9 @@ p, h1, h3 {
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="date">Date</label>
+  <label class="col-md-4 control-label" for="date">Date & Time</label>
   <div class="col-md-4">
   <input id="date" name="date" type="text" placeholder="15/08/1947" class="form-control input-md" required="">
-  <span class="help-block">No spcaes whatsoever.</span>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="time">Time</label>
-  <div class="col-md-4">
-  <input id="time" name="time" type="text" placeholder="9:30 AM" class="form-control input-md">
 
   </div>
 </div>

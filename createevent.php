@@ -36,23 +36,29 @@ p, h1 {
 }
 </style>
 </head>
-<div class = "container">
 <body>
+<div class = "container">
+<br>
 <?php
     $title = $_POST["title"];
+    if (file_exists($title." participants.csv")) {
+        echo "<p>The title ".$title." exists, Please enter again with new title name or manually delete existing participants list.<p>";
+        exit();
+    }
     $description =  $_POST["description"];
+    $speaker =  $_POST["speaker"];
+    $speaker_profile =  $_POST["speaker-profile"];
     $date =  $_POST["date"];
-    $time = $_POST["time"];
     $venue = $_POST["venue"];
     $type = $_POST["type"];
     $fp = fopen("eventdata.txt", "w");
-    fwrite($fp, $title . "\n" . $description . "\n" . $venue . "\n" . $date . "\n" . $time . "\n" . $type . "\n");
+    fwrite($fp, $title . "\n" . $description . "\n" . $speaker . "\n" . $speaker_profile . "\n" . $venue . "\n" . $date . "\n" . $type . "\n");
     fclose($fp);
     $fp = fopen("regcount.txt", "w");
     fwrite($fp, 0);
     fclose($fp);
+    echo "<p>Event created successfully</p>";
 ?>
-<p>Event created successfully</p>
 </div>
 </body>
 </html>

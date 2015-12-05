@@ -36,18 +36,63 @@ p, h1 {
 }
 </style>
 </head>
-<div class = "container">
 <body>
+<div class = "container">
 <?php
+    
+    /* validation
+     $name = $email = $gender = $comment = $website = "";
+     $nameval=$emailval=$contactval=$rollnoval=$deptval=$collegeval"";
+     
+     
+     
+     if(empty($name))
+     $nameval="Empty field";
+     else if(!preg_match("/^[a-zA-Z ]{4,}$/",$name))
+     $nameval="ImproperName";
+     if(empty($email))
+     $emailval="Empty Field";
+     if(empty($contact))
+     $phoneval="Empty Field";
+     if(empty($rollno))
+     $rollnoval="Empty Field";
+     else if(!preg_match("/^[0-9]{10}$/",$contact))
+     $contactval="Enter 10-digit no.";
+     if(empty($dept))
+     $deptval="Empty Address";
+     
+     
+     if(!preg_match("/^[a-zA-z][A-Za-z0-9]*@[A-Za-z]+\.[a-zA-Z]{2,3}/",$email))
+     $emailval="Invalid email";
+     if(!preg_match("/^[0-9]{2}[A-Za-z][0-9]{2}[A-Za-z][0-9]{4}$/",$rollno))
+     $rollnoval="Invalid roll no";
+     
+     
+     }
+     
+     
+     
+     function test_input($data) {
+     $data = trim($data);
+     $data = stripslashes($data);
+     $data = htmlspecialchars($data);
+     return $data;
+     }
+     */
+    
     $name = $_POST["name"];
     $email =  $_POST["email"];
     $contact =  $_POST["contact"];
-    $roll = $_POST["roll"];
+    $rollno = $_POST["roll"];
     $dept = $_POST["dept"];
+    $college = $_POST["institution"];
     if($dept == "Other")
       $dept = $_POST["dept-other"];
+    
+    // using files
     $fp = fopen("eventdata.txt", "r");
     $filename = fgets($fp);
+    $filename = substr($filename, 0, -1);
     fclose($fp);
     substr($filename, 0, -2);
     $fcount = fopen("regcount.txt", "r");
@@ -57,10 +102,45 @@ p, h1 {
     $fcount = fopen("regcount.txt", "w");
     fwrite($fcount, $count);
     fclose($fcount);
-    $fp = fopen($filename."details.csv", "a");
+    $fp = fopen($filename." participants.csv", "a");
     fwrite($fp, $count . "," . $name . "," . $email . "," . $roll . "," . $contact . "," . $dept . "\n");
     fclose($fp);
+    
+    // using database
+    /*
+    $dbhost = 'localhost:3036';
+    $dbuser = 'root';
+    $dbpass = 'root';
+    $dbdata='user';
+    $conn = mysql_connect($dbhost, $dbuser, $dbpass,$dbdata);
+    if(! $conn )
+    {
+        die('Could not connect: ' . mysql_error());
+    }
+    
+    
+    
+    $sql = "INSERT INTO user ".
+    "(name,email,contact,college,rollno,department) ".
+    "VALUES ".
+    "('$name','$email','$contact','$college','$rollno','$dept')";
+    mysql_select_db('user');
+    $retval = $conn->mysql_query( $sql);
+    $result = mysql_query("SELECT * FROM user", $conn);
+    
+    echo $result->num_rows;
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $getemail=$row["email"];
+            if(!strcmp($getmail,$email)){
+                echo "email already entered";
+            }
+        }
+    echo "Entered data successfully\n";
+    mysql_close($conn);
+    }*/
 ?>
+<br>
 <p>You are successfully registered as</p>
 <h1><?php echo $count ?></h1>
 </div>

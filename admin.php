@@ -64,7 +64,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="title">Speaker</label>
           <div class="col-md-4">
-            <input id="speaker" name="speaker" type="text" placeholder="Mr. Badri Narayana" class="form-control input-md" required="">
+            <input id="speaker" name="speaker" type="text" placeholder="Dr. APJ Abdul Kalam" class="form-control input-md" required="">
 
           </div>
         </div>
@@ -73,7 +73,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="title">Speaker Profile(URL)</label>
           <div class="col-md-4">
-            <input id="speaker-profile" name="speaker-profile" type="text" placeholder="Speaker Profile" class="form-control input-md" required="">
+            <input id="speaker-profile" name="speaker-profile" type="text" placeholder="https://twitter.com/OfficialKalam" class="form-control input-md" required="">
 
           </div>
         </div>
@@ -106,7 +106,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="date">Date & Time</label>
           <div class="col-md-4">
-            <input id="date" name="date" type="text" placeholder="15/08/1947" class="form-control input-md" required="">
+            <input id="date" name="date" type="text" placeholder="15/08/1947 09:30 AM" class="form-control input-md" required="">
 
           </div>
         </div>
@@ -121,5 +121,6 @@
 
       </fieldset>
     </form>
-  </body>
-  </html>
+  </div>
+</body>
+</html>

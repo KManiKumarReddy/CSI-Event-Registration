@@ -103,7 +103,7 @@
   fwrite($fcount, $count);
   fclose($fcount);
   $fp = fopen($filename." participants.csv", "a");
-  fwrite($fp, $count . "," . $name . "," . $email . "," . $roll . "," . $contact . "," . $dept . "\n");
+  fwrite($fp, $count . "," . $name . "," . $email . "," . $rollno . "," . $contact . "," . $dept . "\n");
   fclose($fp);
 
   // using database
